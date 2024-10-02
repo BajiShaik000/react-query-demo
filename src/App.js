@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { Homepage } from "./components/Home.page";
+import { SuperHerospage } from "./components/SuperHeros.page";
+import { RQSuperHerospage } from "./components/RQSuperHeros.page";
+import { RQSuperHeropage } from "./components/RQSuperHero.page";
+import { ParallelQueriespage } from "./components/ParallelQueries.page";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/super-heroes">Traditional Super Heroes</Link>
+              </li>
+              <li>
+                <Link to="/rq-super-heroes">RQ Super Heroes</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="rq-parallel" element={<ParallelQueriespage />} />
+          <Route
+            path="/rq-super-heroes/:heroId"
+            element={<RQSuperHeropage />}
+          />
+          <Route path="/super-heroes" element={<SuperHerospage />} />
+          <Route path="/rq-super-heroes" element={<RQSuperHerospage />} />
+        </Routes>
+      </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+    </QueryClientProvider>
   );
 }
 
