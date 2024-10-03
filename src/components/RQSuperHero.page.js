@@ -16,7 +16,7 @@ export const RQSuperHeropage = () => {
 
   return (
     <div>
-      {data?.data.name} - {data?.data.alterego}
+      {data?.data.name} - {data?.data.alterEgo}
     </div>
   );
 };
