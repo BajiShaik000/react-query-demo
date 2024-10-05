@@ -24,6 +24,16 @@
       "name": "Avatar",
       "alterEgo": "James Cameron",
       "id": 5
+    },
+    {
+      "name": "Tageriyan",
+      "alterEgo": "Jon Snow",
+      "id": 6
+    },
+    {
+      "name": "the imp",
+      "alterEgo": "Tyrion lanister",
+      "id": 7
     }
   ],
   "friends": [
